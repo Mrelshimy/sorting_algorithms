@@ -1,9 +1,8 @@
 #include "sort.h"
 
 /**
- * insertion_sort - C implementation of insertion sort algorithm
- * @array: input array to be sorted
- * @size: array size
+ * insertion_sort_list - C implementation of insertion sort algorithm
+ * @list: list to sort
  *
  */
 
@@ -16,7 +15,7 @@ void insertion_sort_list(listint_t **list)
 
 	n = (*list)->next;
 
-	while(n)
+	while (n)
 	{
 		m = n;
 		n = n->next;
@@ -34,6 +33,14 @@ void insertion_sort_list(listint_t **list)
 		}
 	}
 }
+
+
+/**
+ * node_swap - swap 2 nodes in doubly linked list
+ * @x: first node
+ * @y: second node
+ *
+ */
 
 void node_swap(listint_t *x, listint_t *y)
 {
