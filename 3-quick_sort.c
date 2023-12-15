@@ -11,75 +11,58 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size == 0)
 		return;
-
-	quickSort(array, 0, size - 1, array, size);
+	quicksort(array, 0, size - 1, size);
 }
 
 /**
- * swap - swap 2 variables values
- * @array: input array to be printed
+ * quicksort - sorting of array fn
+ * @array: input array to be sorted
  * @size: array size
- * @a: first var
- * @b: second var
+ * @start: lower bound
+ * @end: higher bound
  *
  */
-
-void swap(int *a, int *b, int *array, size_t size)
+void quicksort(int *array, int start, int end, size_t size)
 {
-	int t;
+	int pivot;
 
-	t = *a;
-	*a = *b;
-	*b = t;
-	print_array(array, size);
+	if (end <= start)
+		return;
+
+	pivot = partition(array, start, end, size);
+	quicksort(array, start, pivot - 1, size);
+	quicksort(array, pivot + 1, end, size);
 }
 
 /**
  * partition - partitioning of array
  * @array: input array to be sorted
  * @size: array size
- * @arr: array
- * @low: lower bound
- * @high: higher bound
+ * @start: lower bound
+ * @end: higher bound
  *
  * Return: pivot location
  */
-
-int partition(int arr[], int low, int high, int *array, size_t size)
+int partition(int *array, int start, int end, size_t size)
 {
-	int pivot = arr[high];
-	int i = (low - 1), j;
+	int pivot = array[end];
+	int i = start - 1, j, tmp;
 
-	for (j = low; j <= high - 1; j++)
+	(void) size;
+	for (j = start; j <= end - 1; j++)
 	{
-		if (arr[j] < pivot)
+		if (array[j] < pivot)
 		{
 			i++;
-			swap(&arr[i], &arr[j], array, size);
+			tmp = array[i];
+			array[i] = array[j];
+			array[j] = tmp;
 		}
 	}
-	swap(&arr[i + 1], &arr[high], array, size);
-	return (i + 1);
-}
-
-/**
- * quickSort - sorting of array fn
- * @array: input array to be sorted
- * @size: array size
- * @arr: array
- * @low: lower bound
- * @high: higher bound
- *
- */
-
-void quickSort(int arr[], int low, int high, int *array, size_t size)
-{
-	if (low < high)
-	{
-		int pi;
-
-		pi = partition(arr, low, high, array, size);
-		quickSort(arr, low, pi - 1, array, size);
-		quickSort(arr, pi + 1, high, array, size);
-	}
+	i++;
+	tmp = array[i];
+	array[i] = array[end];
+	array[end] = tmp;
+	print_array(array, size);
+	return (i);
 }
