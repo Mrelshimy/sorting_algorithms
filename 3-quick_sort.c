@@ -4,9 +4,6 @@
  * quick_sort - C implementation of selection sort algorithm
  * @array: input array to be sorted
  * @size: array size
- *
- * Description: This function sorts an array of integers
- *              in ascending order using the quicksort algorithm.
  */
 void quick_sort(int *array, size_t size)
 {
@@ -22,9 +19,6 @@ void quick_sort(int *array, size_t size)
  * @start: lower bound of the array or subarray
  * @end: upper bound of the array or subarray
  * @size: array size
- *
- * Description: This function is a helper function for quick_sort.
- *              It recursively sorts the array or subarray using quicksort.
  */
 void q_sort(int *array, int start, int end, size_t size)
 {
@@ -34,10 +28,6 @@ void q_sort(int *array, int start, int end, size_t size)
 		return;
 
 	pivot = partition(array, start, end, size);
-
-	/* Uncomment the following line if you want to see intermediate steps */
-	/* printf("After partition: "); print_array(array, size); */
-
 	q_sort(array, start, pivot - 1, size);
 	q_sort(array, pivot + 1, end, size);
 }
@@ -50,11 +40,6 @@ void q_sort(int *array, int start, int end, size_t size)
  * @size: array size
  *
  * Return: pivot location
- *
- * Description: This function takes the last element of the array as the pivot,
- *              places the pivot element at its correct position in the sorted
- *              array, and places all smaller elements to the left of the pivot
- *              and all greater elements to the right of the pivot.
  */
 int partition(int *array, int start, int end, size_t size)
 {
@@ -80,9 +65,6 @@ int partition(int *array, int start, int end, size_t size)
  * @size: array size
  * @x: pointer to the first element
  * @y: pointer to the second element
- *
- * Description: This function swaps the values of two elements in an array
- *              and prints the array after the swap.
  */
 void var_swap(int *array, size_t size, int *x, int *y)
 {
